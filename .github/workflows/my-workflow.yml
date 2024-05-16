@@ -18,7 +18,7 @@ on:
 
   # Scheduled trigger at 5:00 AM UTC, Monday through Friday
   schedule:
-    - cron: '0 5 * * 1-5'
+    - cron: "0 5 * * 1-5"
 
 # Jobs defined in the workflow
 jobs:
@@ -28,7 +28,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js 
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: latest
@@ -40,6 +40,9 @@ jobs:
       - name: Print a message for non-main branches
         if: github.ref != 'refs/heads/main'
         run: echo "This is not the main branch."
+
+      - name: Npm install
+        run: npm install
 
       - name: Run tests
         run: npm run lint
@@ -54,7 +57,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js 
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: latest
@@ -66,6 +69,9 @@ jobs:
       - name: Print a message for non-main branches
         if: github.ref != 'refs/heads/main'
         run: echo "This is not the main branch."
+
+      - name: Npm install
+        run: npm install
 
       - name: Run tests
         run: npm test
