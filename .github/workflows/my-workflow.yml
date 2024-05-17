@@ -1,5 +1,5 @@
 # Workflow name
-name: hoand33-workflow
+name: my-workflow
 
 # Triggers for the workflow
 on:
