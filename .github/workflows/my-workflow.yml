@@ -22,70 +22,45 @@ on:
 
 # Jobs defined in the workflow
 jobs:
-  build-and-elint:
+  install-build-test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: latest
+          node-version: ${{env.NODE_VERSION}}
+          cache: "npm"
 
-      - name: Print a message for main branch
-        if: github.ref == 'refs/heads/main'
-        run: echo "This is the main branch."
+      - name: Install, Build, Test
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test
 
-      - name: Print a message for non-main branches
-        if: github.ref != 'refs/heads/main'
-        run: echo "This is not the main branch."
-
-      - name: Npm install
-        run: npm install
-
-      - name: Run tests
-        run: npm run lint
-
-      - name: Debug message
-        if: env.DEBUG == 'true'
-        run: echo "Debugging is enabled. ${env.DEBUG}"
-
-  build-and-test:
+  stage:
     runs-on: ubuntu-latest
+    needs: install-build-test
+    environment:
+      name: dev
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # Simulate a Deployment
+      - name: Deploy to Staging
+        run: |
+          echo "Deployed to staging environment"
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: latest
-
-      - name: Print a message for main branch
-        if: github.ref == 'refs/heads/main'
-        run: echo "This is the main branch."
-
-      - name: Print a message for non-main branches
-        if: github.ref != 'refs/heads/main'
-        run: echo "This is not the main branch."
-
-      - name: Npm install
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
-      - name: Debug message
-        if: env.DEBUG == 'true'
-        run: echo "Debugging is enabled."
-
-  post-build-actions:
-    needs: [build-and-elint, build-and-test]
+  production:
     runs-on: ubuntu-latest
+    needs: stage
+    environment:
+      name: dev
+
     steps:
-      - name: Publish test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: test-results.xml
+      # Simulate a Deployment
+      - name: Deploy to Production
+        run: |
+          echo "Deployed to production environment"
