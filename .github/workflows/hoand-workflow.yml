@@ -55,14 +55,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           aws-region: ${{vars.REGION}}
 
       - name: Deploy to Staging
         run: |
           echo "aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}"
           echo "aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-          echo "aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}"
+          echo "aws-region: ${{vars.REGION}}"
           echo "version: ${{vars.VERSION}}"
 
   stage:
