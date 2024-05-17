@@ -13,6 +13,10 @@ on:
 
   schedule:
     - cron: "0 5 * * 1-5"
+
+environment:
+  name: dev
+
 jobs: # Jobs defined in the workflow
   create-stack:
     runs-on: ubuntu-latest
