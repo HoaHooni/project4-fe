@@ -32,6 +32,5 @@ test('calls onMovieClick when movie is clicked', async () => {
   const movie1 = await screen.findByText(/Movie 1/);
 
   fireEvent.click(movie1);
-
   expect(onMovieClick).toHaveBeenCalledWith(mockMovies[0]);
 });
