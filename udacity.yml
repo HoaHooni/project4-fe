@@ -3,4 +3,6 @@ Resources:
   MyS3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: my-unique-s3-bucket-name # Thay thế bằng tên bucket của bạn
+      BucketName: hoand33-s3-bucket-name 
+      no-fail-on-empty-changeset: true
+
