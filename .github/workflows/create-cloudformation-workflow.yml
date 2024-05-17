@@ -35,3 +35,4 @@ jobs: # Jobs defined in the workflow
         with:
           name: udacity-test
           template: udacity.yml
+          no-fail-on-empty-changeset: true

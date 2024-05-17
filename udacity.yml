@@ -3,6 +3,5 @@ Resources:
   MyS3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: hoand33-s3-bucket-name 
-      no-fail-on-empty-changeset: true
+      BucketName: hoand33-s3-bucket-name
 
