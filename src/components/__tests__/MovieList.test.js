@@ -29,7 +29,7 @@ test('calls onMovieClick when movie is clicked', async () => {
   const onMovieClick = jest.fn();
   render(<MovieList onMovieClick={onMovieClick} />);
 
-  const movie1 = await screen.findByText(/Movie 1/);
+    const movie1 = await screen.findByText(/Movie 1/);
 
   fireEvent.click(movie1);
 
