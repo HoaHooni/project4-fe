@@ -62,7 +62,7 @@ jobs:
           echo "aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}"
           echo "aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}"
           echo "aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}"
-          echo "version: ${{VERSION}}"
+          echo "version: ${{variable.VERSION}}"
 
   stage:
     runs-on: ubuntu-latest
