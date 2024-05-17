@@ -5,6 +5,14 @@ name: create-cloudformation-stack
 on:
   # Manual trigger using the workflow_dispatch event
   workflow_dispatch:
+
+  # Automatic trigger on push events to the main branch
+  push:
+    branches:
+      - main
+
+  schedule:
+    - cron: "0 5 * * 1-5"
 jobs: # Jobs defined in the workflow
   create-stack:
     runs-on: ubuntu-latest

@@ -59,7 +59,7 @@ jobs:
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: udatest
-          template: udatest.yml
+          template: udacity.yml
 
   secret:
     runs-on: ubuntu-latest
